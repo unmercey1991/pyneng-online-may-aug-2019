@@ -1,18 +1,22 @@
-import clitable
+# или import clitable, если версия textfsm == 0.4
+from textfsm import clitable
+import sys
 
-output_sh_ip_route_ospf = open('output/sh_ip_route_ospf.txt').read()
+command = sys.argv[1]
+output_file = sys.argv[2]
 
-cli_table = clitable.CliTable('index', 'templates')
+with open(output_file) as output:
+    command_output = output.read()
 
-attributes = {'Command': 'show ip route ospf', 'Vendor': 'Cisco'}
+cli = clitable.CliTable('index', 'templates')
+attributes = {'Command': command}
 
-cli_table.ParseCmd(output_sh_ip_route_ospf, attributes)
-print('CLI Table output:\n', cli_table)
+cli.ParseCmd(command_output, attributes)
 
-print('Formatted Table:\n', cli_table.FormattedTable())
+#print('Formatted Table:\n', cli.FormattedTable())
 
-data_rows = [list(row) for row in cli_table]
-header = list(cli_table.header)
+data_rows = [list(row) for row in cli]
+header = list(cli.header)
 
 print(header)
 for row in data_rows:

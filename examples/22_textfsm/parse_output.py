@@ -11,3 +11,4 @@ with open(template) as f, open(output_file) as output:
     result = re_table.ParseText(output.read())
     print(result)
     print(tabulate(result, headers=header))
+

@@ -1,7 +1,7 @@
-Value INTF (\S+)
-Value ADDR (\S+)
-Value STATUS (up|down|administratively down)
-Value PROTO (up|down)
+Value interface (\S+)
+Value ip (\S+)
+Value status (administratively down|down|up)
+Value protocol (down|up)
 
 Start
-  ^${INTF}\s+${ADDR}\s+\w+\s+\w+\s+${STATUS}\s+${PROTO} -> Record
+  ^${interface} +${ip} +\w+ +\w+ +${status} +${protocol} -> Record
