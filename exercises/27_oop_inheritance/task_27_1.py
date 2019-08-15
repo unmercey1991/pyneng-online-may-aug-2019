@@ -9,7 +9,7 @@
 
 Для этого в методе __init__ должен сначала вызываться метод __init__ класса BaseSSH, а затем выполняться переход в режим enable.
 
-In [2]: from task_27_1 import BaseSSH
+In [2]: from task_27_1 import CiscoSSH
 
 In [3]: r1 = CiscoSSH(**device_params)
 
