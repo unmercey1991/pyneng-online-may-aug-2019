@@ -20,7 +20,10 @@ class CiscoSSH(ConnectSSH):
         return result
 
     def exit_config_mode(self):
-        return super().send_command('end')
+        self._ssh.send('end\n')
+        time.sleep(0.2)
+        result = self._ssh.recv(self._MAX_READ).decode('ascii')
+        return result
 
     def send_config_commands(self, commands):
         output = self.config_mode()
