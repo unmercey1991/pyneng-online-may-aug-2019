@@ -10,7 +10,7 @@ def parse_cdp(filename):
 
     result = {}
 
-    with open('sh_cdp_neighbors_sw1.txt') as f:
+    with open(filename) as f:
         match_iter = re.finditer(regex, f.read(), re.DOTALL)
         for match in match_iter:
             device = match.group('device')
