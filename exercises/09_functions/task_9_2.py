@@ -44,4 +44,15 @@ trunk_config = {
     'FastEthernet0/2': [11, 30],
     'FastEthernet0/4': [17]
 }
-
+def gen_access_config(trunk_mode_template, trunk_config):
+    '''
+    Шаблон для настройки портов коммутатора доступа
+    '''
+    for intf, vlan in trunk_config.items():
+        print('interface ' + intf)
+        for command in trunk_mode_template:
+            if command.endswith('allowed vlan'):
+                print(' {} {}'.format(command, vlan))
+            else:
+                print(' {}'.format(command))
+gen_access_config(trunk_mode_template, trunk_config)
